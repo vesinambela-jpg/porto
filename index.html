@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digital Marketing Portfolio – Veronika Evelina</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:    #2e7d32;
+      --green-lt: #43a047;
+      --green-dk: #1b5e20;
+      --yellow:   #f9c21a;
+      --yellow-lt:#fde68a;
+      --black:    #0a0a0a;
+      --deep:     #111111;
+      --white:    #ffffff;
+      --gray:     #6b7280;
+      --gray-lt:  #e5e7eb;
+      --border:   #d1d5db;
+      --light:    #f9fafb;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    /* ── SCROLL SNAP CONTAINER ── */
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--black);
+      color: var(--deep);
+      line-height: 1.6;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+    }
+
+    /* Every slide is exactly one viewport tall */
+    .slide {
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Flexible slides: grow to fit content, no height cap */
+    .slide-free {
+      height: auto;
+      min-height: 100vh;
+      overflow: visible;
+      padding-top: 5rem;   /* clear the fixed topbar */
+      padding-bottom: 4rem;
+      justify-content: flex-start; /* no vertical centering */
+    }
+
+    .slide-free .slide-inner {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    .slide-inner {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 3rem;
+    }
+
+    /* ── SIDE NAV DOTS ── */
+    .side-nav {
+      position: fixed;
+      right: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .side-dot {
+      display: block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      border: 2px solid rgba(255,255,255,0.5);
+      cursor: pointer;
+      transition: background 0.25s, transform 0.25s;
+      text-decoration: none;
+    }
+
+    .side-dot:hover,
+    .side-dot.active {
+      background: var(--yellow);
+      border-color: var(--yellow);
+      transform: scale(1.3);
+    }
+
+    /* ── TOP BAR (thin, always visible) ── */
+    .topbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 199;
+      height: 48px;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      display: flex;
+      align-items: center;
+      padding: 0 2rem;
+      justify-content: space-between;
+    }
+
+    .topbar-logo {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--yellow);
+      letter-spacing: 0.04em;
+    }
+
+    .topbar-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .topbar-links a {
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.55);
+      transition: color 0.2s;
+    }
+
+    .topbar-links a:hover { color: var(--yellow); }
+
+    /* slide number badge */
+    .slide-badge {
+      position: absolute;
+      bottom: 1.5rem;
+      right: 3rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.2);
+      letter-spacing: 0.1em;
+    }
+
+    /* scroll hint arrow on first slide */
+    .scroll-hint {
+      position: absolute;
+      bottom: 1.75rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.3rem;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      animation: bounce 2s infinite;
+    }
+
+    .scroll-hint svg { width: 20px; height: 20px; }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ══════════════════════════════════════
+       SLIDE 1 — HERO
+    ══════════════════════════════════════ */
+    .slide-hero {
+      background: linear-gradient(140deg, var(--green-dk) 0%, #2e7d32 55%, #1a3a1c 100%);
+      color: var(--white);
+      text-align: center;
+      align-items: center;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: var(--yellow);
+      color: #111;
+      border-radius: 999px;
+      padding: 0.28rem 1.1rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 800;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      line-height: 1.1;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-title span { color: var(--yellow); }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.75);
+      max-width: 580px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .hero-contacts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      justify-content: center;
+    }
+
+    .hero-contacts a,
+    .hero-contacts span {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 0.82rem;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: rgba(255,255,255,0.1);
+      padding: 0.3rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .hero-contacts a:hover { color: var(--yellow); border-color: var(--yellow); }
+
+    /* ══════════════════════════════════════
+       SLIDE 2 — TABLE OF CONTENTS
+    ══════════════════════════════════════ */
+    .slide-toc { background: var(--black); }
+
+    .toc-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    .toc-sub {
+      font-size: 0.88rem;
+      color: var(--gray);
+      margin-bottom: 2.5rem;
+    }
+
+    .toc-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .toc-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      text-decoration: none;
+      color: var(--white);
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    }
+
+    .toc-card:hover {
+      background: rgba(46,125,50,0.25);
+      border-color: var(--green-lt);
+      transform: translateY(-2px);
+    }
+
+    .toc-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--green);
+      color: var(--white);
+      font-size: 0.85rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .toc-card-label {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .toc-card-hint {
+      font-size: 0.75rem;
+      color: var(--gray);
+      margin-top: 0.15rem;
+    }
+
+    /* ══════════════════════════════════════
+       SHARED SECTION LABEL / DIVIDER
+    ══════════════════════════════════════ */
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 800;
+      margin-bottom: 0.3rem;
+    }
+
+    .label-green { color: var(--green-lt); }
+    .label-yellow { color: var(--yellow); }
+    .label-white  { color: rgba(255,255,255,0.5); }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.7rem, 2.8vw, 2.5rem);
+      margin-bottom: 0.4rem;
+    }
+
+    .divider {
+      width: 44px;
+      height: 3px;
+      border-radius: 2px;
+      margin-bottom: 1.75rem;
+    }
+
+    .divider-yellow { background: var(--yellow); }
+    .divider-green  { background: var(--green-lt); }
+
+    /* ══════════════════════════════════════
+       SLIDE 3 — ABOUT ME
+    ══════════════════════════════════════ */
+    .slide-about { background: var(--light); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      font-size: 0.92rem;
+      color: #374151;
+      line-height: 1.8;
+      margin-bottom: 0.9rem;
+    }
+
+    .about-text p:last-child { margin-bottom: 0; }
+
+    .skills-label {
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 0.75rem;
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .skill-tag {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.25rem 0.65rem;
+      font-size: 0.76rem;
+      font-weight: 500;
+      color: var(--deep);
+    }
+
+    /* ══════════════════════════════════════
+       SLIDE 4 — EDUCATION
+    ══════════════════════════════════════ */
+    .slide-edu { background: var(--white); }
+
+    .edu-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .edu-card {
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--green);
+      border-radius: 10px;
+      padding: 1.4rem 1.6rem;
+      background: var(--light);
+    }
+
+    .edu-school { font-weight: 700; font-size: 1rem; color: var(--deep); margin-bottom: 0.2rem; }
+    .edu-prog   { font-size: 0.88rem; color: var(--gray); margin-bottom: 0.5rem; }
+
+    .date-badge {
+      display: inline-block;
+      background: var(--yellow);
+      color: #111;
+      font-size: 0.73rem;
+      font-weight: 700;
+      padding: 0.18rem 0.6rem;
+      border-radius: 999px;
+    }
+
+    .cert-box {
+      background: var(--green);
+      color: var(--white);
+      border-radius: 10px;
+      padding: 1.1rem 1.6rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .cert-icon { font-size: 1.8rem; flex-shrink: 0; }
+    .cert-box strong { display: block; font-size: 0.92rem; }
+    .cert-box span   { font-size: 0.8rem; color: rgba(255,255,255,0.78); }
+
+    /* ══════════════════════════════════════
+       SLIDE 5 — WORK EXPERIENCE
+    ══════════════════════════════════════ */
+    .slide-exp { background: var(--light); }
+
+    .timeline {
+      position: relative;
+      padding-left: 1.75rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 6px; top: 0; bottom: 0;
+      width: 2px;
+      background: var(--gray-lt);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 1rem;
+    }
+
+    .timeline-item:last-child { margin-bottom: 0; }
+
+    .tl-dot {
+      position: absolute;
+      left: -1.75rem;
+      top: 6px;
+      width: 13px; height: 13px;
+      border-radius: 50%;
+      background: var(--green);
+      border: 2px solid var(--light);
+      box-shadow: 0 0 0 2px var(--green);
+    }
+
+    .tl-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.3rem;
+    }
+
+    .tl-company { font-weight: 700; font-size: 0.95rem; color: var(--deep); }
+    .tl-role    { font-size: 0.82rem; color: var(--green-lt); font-weight: 600; }
+
+    .tl-meta {
+      display: flex; gap: 0.5rem; flex-wrap: wrap;
+      font-size: 0.74rem; color: var(--gray);
+      margin: 0.25rem 0 0.6rem;
+    }
+
+    .tl-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--gray); align-self: center; }
+
+    .tl-bullets {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 0.28rem;
+    }
+
+    .tl-bullets li {
+      display: block;
+      padding-left: 1.1rem;
+      position: relative;
+      font-size: 0.8rem; color: #374151; line-height: 1.5;
+      margin-bottom: 0.28rem;
+    }
+
+    .tl-bullets li::before {
+      content: '▸';
+      color: var(--green);
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    /* ══════════════════════════════════════
+       SLIDE 6 — ORGANIZATIONAL EXP
+    ══════════════════════════════════════ */
+    .slide-org { background: var(--white); }
+
+    .org-card {
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem 2.5rem;
+      max-width: 680px;
+    }
+
+    .org-company { font-weight: 700; font-size: 1.05rem; color: var(--deep); margin-bottom: 0.2rem; }
+    .org-role    { font-size: 0.88rem; color: var(--green-lt); font-weight: 600; margin-bottom: 0.4rem; }
+
+    .org-meta {
+      display: flex; gap: 0.5rem; flex-wrap: wrap;
+      font-size: 0.78rem; color: var(--gray);
+      margin-bottom: 1rem;
+    }
+
+    /* ══════════════════════════════════════
+       SLIDE 7 — PROJECTS
+    ══════════════════════════════════════ */
+    .slide-projects { background: var(--light); }
+
+    /* ── case study two-column wrapper ── */
+    .cs-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+    }
+
+    /* LEFT column */
+    .cs-title-row {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .cs-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--deep);
+    }
+
+    .cs-period {
+      font-size: 0.82rem;
+      color: var(--gray);
+      font-weight: 500;
+    }
+
+    .cs-brand {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--deep);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cs-block {
+      margin-bottom: 1.1rem;
+    }
+
+    .cs-block-label {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 0.4rem;
+    }
+
+    .cs-block p {
+      font-size: 0.86rem;
+      color: #374151;
+      line-height: 1.65;
+    }
+
+    .cs-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .cs-bullets li {
+      display: block;
+      padding-left: 1.1rem;
+      position: relative;
+      font-size: 0.86rem;
+      color: #374151;
+      line-height: 1.6;
+    }
+
+    .cs-bullets li::before {
+      content: '▸';
+      color: var(--green);
+      position: absolute;
+      left: 0;
+    }
+
+    /* Result cards */
+    .cs-results {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .cs-result-card {
+      flex: 1;
+      min-width: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 10px;
+      padding: 0.85rem 1rem;
+      gap: 0.5rem;
+    }
+
+    .cs-result-down { background: #f0fdf4; border: 1px solid #bbf7d0; }
+    .cs-result-up   { background: #f0fdf4; border: 1px solid #bbf7d0; }
+
+    .cs-result-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .cs-result-metric {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--deep);
+    }
+
+    .cs-result-desc {
+      font-size: 0.73rem;
+      color: var(--gray);
+    }
+
+    .cs-result-number {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--green);
+      line-height: 1;
+    }
+
+    .cs-result-arrow {
+      font-size: 1.6rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .cs-arrow-down { color: var(--green); }
+    .cs-arrow-up   { color: var(--green); }
+
+    /* RIGHT column — images + results */
+    .cs-right {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    /* Two ad screenshots side by side, natural proportions */
+    .cs-img-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    .cs-img-row img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 10px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+      border: 1px solid var(--border);
+    }
+
+    /* Wide banner strip */
+    .cs-strip {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      object-position: center 40%;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    /* Result label */
+    .cs-results-label {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+
+    /* Result cards — in right column below images */
+    .cs-results {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.65rem;
+    }
+
+    .cs-result-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 10px;
+      padding: 0.9rem 1rem;
+      gap: 0.5rem;
+    }
+
+    .cs-result-down { background: #f0fdf4; border: 1px solid #bbf7d0; }
+    .cs-result-up   { background: #f0fdf4; border: 1px solid #bbf7d0; }
+
+    .cs-result-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .cs-result-metric {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--deep);
+    }
+
+    .cs-result-desc {
+      font-size: 0.72rem;
+      color: var(--gray);
+    }
+
+    .cs-result-number {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--green);
+      line-height: 1;
+    }
+
+    .cs-result-arrow {
+      font-size: 1.8rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .cs-arrow-down { color: var(--green); }
+    .cs-arrow-up   { color: var(--green); }
+
+    /* ── HKBP case study ── */
+    .hkbp-wrap {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .hkbp-header { margin-bottom: 1.5rem; }
+
+    .hkbp-brand {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--deep);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hkbp-scope-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hkbp-box {
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.1rem 1.4rem;
+    }
+
+    .hkbp-box-title {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--deep);
+      margin-bottom: 0.65rem;
+    }
+
+    .hkbp-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .hkbp-list li {
+      display: block;
+      padding-left: 1rem;
+      position: relative;
+      font-size: 0.82rem;
+      color: #374151;
+      line-height: 1.5;
+    }
+
+    .hkbp-list li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    .hkbp-tools {
+      font-size: 0.8rem;
+      color: var(--gray);
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      margin-bottom: 2rem;
+    }
+
+    .hkbp-tools strong { color: var(--deep); }
+
+    /* content showcase grid */
+    .hkbp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 1.25rem;
+      align-items: start;
+    }
+
+    /* left: images column, right: stats column */
+    .hkbp-content-row {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .hkbp-items {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .hkbp-item { display: flex; flex-direction: column; gap: 0.6rem; }
+
+    .hkbp-item-num {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--deep);
+      color: var(--white);
+      font-size: 0.75rem;
+      font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .hkbp-item-imgs {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .hkbp-item-imgs img {
+      flex: 1;
+      min-width: 0;
+      border-radius: 8px;
+      object-fit: cover;
+      aspect-ratio: 1 / 1;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    /* single wider image for items with 1 image */
+    .hkbp-item-imgs.single img {
+      max-width: 180px;
+      aspect-ratio: 4 / 5;
+    }
+
+    /* stats column */
+    .hkbp-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .hkbp-stat-card {
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--green);
+      border-radius: 10px;
+      padding: 0.9rem 1.1rem;
+    }
+
+    .hkbp-stat-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--deep);
+      margin-bottom: 0.2rem;
+    }
+
+    .hkbp-stat-goal {
+      font-size: 0.76rem;
+      color: var(--gray);
+      margin-bottom: 0.55rem;
+    }
+
+    .hkbp-stat-nums {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .hkbp-stat-num {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: var(--green);
+    }
+
+    .hkbp-stat-sep {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--border);
+      flex-shrink: 0;
+    }
+
+    /* coming-soon grid below case study */
+    .projects-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .projects-coming {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .project-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--yellow);
+      border-radius: 10px;
+      padding: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .project-card:hover {
+      box-shadow: 0 6px 22px rgba(46,125,50,0.1);
+      transform: translateY(-3px);
+    }
+
+    .project-emoji { font-size: 1.8rem; }
+
+    .project-card h3 {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--deep);
+      line-height: 1.4;
+    }
+
+    .project-card p {
+      font-size: 0.8rem;
+      color: var(--gray);
+      line-height: 1.55;
+      flex: 1;
+    }
+
+    .project-coming {
+      display: inline-block;
+      background: var(--yellow-lt);
+      color: #6b5000;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      width: fit-content;
+    }
+
+    /* ══════════════════════════════════════
+       SLIDE 8 — CALL TO ACTION
+       Black bg + white text + yellow accents
+       = maximum contrast
+    ══════════════════════════════════════ */
+    .slide-cta {
+      background: var(--black);
+      text-align: center;
+      align-items: center;
+    }
+
+    .cta-accent-bar {
+      display: inline-block;
+      width: 56px; height: 4px;
+      background: var(--yellow);
+      border-radius: 2px;
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--yellow);
+      margin-bottom: 0.6rem;
+    }
+
+    .cta-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .cta-desc {
+      font-size: 0.95rem;
+      color: #9ca3af;
+      max-width: 500px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+
+    .cta-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      justify-content: center;
+    }
+
+    /* Yellow bg, black text — highest contrast */
+    .btn-cta-primary {
+      background: var(--yellow);
+      color: #000;
+      text-decoration: none;
+      padding: 0.8rem 2rem;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      transition: background 0.2s, transform 0.2s;
+      letter-spacing: 0.01em;
+    }
+
+    .btn-cta-primary:hover { background: #e6b000; transform: translateY(-2px); }
+
+    /* White border, white text on black bg */
+    .btn-cta-outline {
+      background: transparent;
+      color: var(--white);
+      text-decoration: none;
+      padding: 0.8rem 2rem;
+      border-radius: 999px;
+      border: 2px solid rgba(255,255,255,0.35);
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: border-color 0.2s, color 0.2s, transform 0.2s;
+    }
+
+    .btn-cta-outline:hover {
+      border-color: var(--yellow);
+      color: var(--yellow);
+      transform: translateY(-2px);
+    }
+
+    /* ══════════════════════════════════════
+       FOOTER (inside CTA slide)
+    ══════════════════════════════════════ */
+    .cta-footer {
+      position: absolute;
+      bottom: 1.25rem;
+      left: 0; right: 0;
+      text-align: center;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.18);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .toc-grid         { grid-template-columns: repeat(2, 1fr); }
+      .projects-grid    { grid-template-columns: repeat(2, 1fr); }
+      .about-grid       { grid-template-columns: 1fr; }
+      .edu-layout       { grid-template-columns: 1fr; }
+      .cs-wrap          { grid-template-columns: 1fr; }
+      .cs-img-row img   { aspect-ratio: 3 / 4; }
+      .projects-coming  { grid-template-columns: 1fr 1fr; }
+      .hkbp-scope-row   { grid-template-columns: 1fr; }
+      .hkbp-content-row { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .topbar-links     { display: none; }
+      .toc-grid         { grid-template-columns: 1fr 1fr; }
+      .projects-grid    { grid-template-columns: 1fr 1fr; }
+      .projects-coming  { grid-template-columns: 1fr; }
+      .side-nav         { display: none; }
+      .slide-inner      { padding: 0 1.25rem; }
+      .cs-results       { grid-template-columns: 1fr; }
+      .hkbp-scope-row   { grid-template-columns: 1fr; }
+      .hkbp-content-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ TOP BAR ══ -->
+<div class="topbar">
+  <span class="topbar-logo">Veronika Evelina</span>
+  <ul class="topbar-links">
+    <li><a href="#slide-hero">Home</a></li>
+    <li><a href="#slide-about">About</a></li>
+    <li><a href="#slide-edu">Education</a></li>
+    <li><a href="#slide-exp">Experience</a></li>
+    <li><a href="#slide-projects">Projects</a></li>
+    <li><a href="#slide-cta">Contact</a></li>
+  </ul>
+</div>
+
+<!-- ══ SIDE DOT NAVIGATION ══ -->
+<nav class="side-nav" aria-label="Slide navigation">
+  <a class="side-dot active" href="#slide-hero"     title="Intro"></a>
+  <a class="side-dot"        href="#slide-toc"      title="Contents"></a>
+  <a class="side-dot"        href="#slide-about"    title="About Me"></a>
+  <a class="side-dot"        href="#slide-edu"      title="Education"></a>
+  <a class="side-dot"        href="#slide-exp"      title="Work Experience"></a>
+  <a class="side-dot"        href="#slide-org"      title="Org Experience"></a>
+  <a class="side-dot"        href="#slide-projects" title="Projects"></a>
+  <a class="side-dot"        href="#slide-cta"      title="Contact"></a>
+</nav>
+
+<!-- ══════════════════════════════════════════
+     SLIDE 1 — HERO
+══════════════════════════════════════════ -->
+<section class="slide slide-hero" id="slide-hero">
+  <div class="slide-inner" style="text-align:center;">
+    <div class="hero-tag">✦ Digital Marketing Portfolio</div>
+    <h1 class="hero-title">Veronika <span>Evelina</span></h1>
+    <p class="hero-sub">Performance Marketing · Content Strategy · Analytics · Campaign Management</p>
+    <div class="hero-contacts">
+      <span>📍 Jakarta, Indonesia</span>
+      <a href="tel:081289906303">📞 081289906303</a>
+      <a href="mailto:verosinambelaa@gmail.com">✉️ verosinambelaa@gmail.com</a>
+      <a href="https://www.linkedin.com/in/vevelina/" target="_blank" rel="noopener">🔗 LinkedIn</a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    scroll
+  </div>
+  <span class="slide-badge">01 / 08</span>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SLIDE 2 — TABLE OF CONTENTS
+══════════════════════════════════════════ -->
+<section class="slide slide-toc" id="slide-toc">
+  <div class="slide-inner">
+    <p class="section-label label-green" style="margin-bottom:0.5rem;">Navigate</p>
+    <h2 class="toc-heading">Table of Contents</h2>
+    <p class="toc-sub">Click any section to jump straight there.</p>
+    <div class="toc-grid">
+      <a href="#slide-about" class="toc-card">
+        <span class="toc-num">1</span>
+        <div><div class="toc-card-label">About Me</div><div class="toc-card-hint">Who I am & skills</div></div>
+      </a>
+      <a href="#slide-edu" class="toc-card">
+        <span class="toc-num">2</span>
+        <div><div class="toc-card-label">Education</div><div class="toc-card-hint">Academic background</div></div>
+      </a>
+      <a href="#slide-exp" class="toc-card">
+        <span class="toc-num">3</span>
+        <div><div class="toc-card-label">Work Experience</div><div class="toc-card-hint">Career history</div></div>
+      </a>
+      <a href="#slide-org" class="toc-card">
+        <span class="toc-num">4</span>
+        <div><div class="toc-card-label">Org Experience</div><div class="toc-card-hint">Volunteer work</div></div>
+      </a>
+      <a href="#slide-projects" class="toc-card">
+        <span class="toc-num">5</span>
+        <div><div class="toc-card-label">Projects</div><div class="toc-card-hint">Selected work</div></div>
+      </a>
+      <a href="#slide-cta" class="toc-card">
+        <span class="toc-num">6</span>
+        <div><div class="toc-card-label">Contact</div><div class="toc-card-hint">Let's connect</div></div>
+      </a>
+    </div>
+  </div>
+  <span class="slide-badge" style="color:rgba(255,255,255,0.15);">02 / 08</span>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SLIDE 3 — ABOUT ME
+══════════════════════════════════════════ -->
+<section class="slide slide-about" id="slide-about">
+  <div class="slide-inner">
+    <p class="section-label label-green">Who I Am</p>
+    <h2 class="section-title">About Me</h2>
+    <div class="divider divider-yellow"></div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Digital marketing professional with <strong>5+ years</strong> coordinating performance marketing curriculum at RevoU's Fullstack Digital Marketing faculty, building deep, hands-on expertise across Meta, Google, and TikTok Ads, GA4, SEO, and social media strategy through co-designing live campaigns with real partner brands.</p>
+        <p>I combine strong analytical thinking with the ability to craft compelling content in both <strong>Bahasa Indonesia and English</strong>, backed by experience coordinating large cross-functional teams. I'm now making a deliberate move into a full-time digital marketing role, ready to turn strategic depth into measurable results.</p>
+      </div>
+      <div>
+        <p class="skills-label">Tools &amp; Skills</p>
+        <div class="skills-grid">
+          <span class="skill-tag">Meta Ads Manager</span>
+          <span class="skill-tag">Google Ads Manager</span>
+          <span class="skill-tag">TikTok Ads</span>
+          <span class="skill-tag">Google Analytics (GA4)</span>
+          <span class="skill-tag">Google Tag Manager</span>
+          <span class="skill-tag">Meta Business Suite</span>
+          <span class="skill-tag">SEO</span>
+          <span class="skill-tag">Mailchimp</span>
+          <span class="skill-tag">Canva</span>
+          <span class="skill-tag">CapCut</span>
+          <span class="skill-tag">Claude Code</span>
+          <span class="skill-tag">Content Strategy</span>
+          <span class="skill-tag">A/B Testing</span>
+          <span class="skill-tag">Campaign Analytics</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <span class="slide-badge">03 / 08</span>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SLIDE 4 — EDUCATION
+══════════════════════════════════════════ -->
+<section class="slide slide-edu" id="slide-edu">
+  <div class="slide-inner">
+    <p class="section-label label-green">Academic Background</p>
+    <h2 class="section-title">Education</h2>
+    <div class="divider divider-yellow"></div>
+    <div class="edu-layout">
+      <div class="edu-card">
+        <div class="edu-school">Universitas Padjadjaran</div>
+        <div class="edu-prog">Management Program</div>
+        <span class="date-badge">Aug 2019</span>
+      </div>
+      <div class="edu-card">
+        <div class="edu-school">RevoU</div>
+        <div class="edu-prog">Full-stack Digital Marketing</div>
+        <span class="date-badge">Dec 2020</span>
+      </div>
+    </div>
+    <div class="cert-box">
+      <span class="cert-icon">🏆</span>
+      <div>
+        <strong>Certification: Full-stack Digital Marketing</strong>
+        <span>Issued by RevoU · Completed Dec 2020</span>
+      </div>
+    </div>
+  </div>
+  <span class="slide-badge">04 / 08</span>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SLIDE 5 — WORK EXPERIENCE
+══════════════════════════════════════════ -->
+<section class="slide slide-free slide-exp" id="slide-exp">
+  <div class="slide-inner">
+    <p class="section-label label-green">Career History</p>
+    <h2 class="section-title">Work Experience</h2>
+    <div class="divider divider-yellow"></div>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-company">RevoU</div>
+          <div class="tl-role">Sr. Program Executive, Fullstack Digital Marketing</div>
+          <div class="tl-meta"><span>📍 Jakarta, Indonesia</span><span class="dot"></span><span>Mar 2021 – Jul 2026</span></div>
+          <ul class="tl-bullets">
+            <li>Built and supervised a network of <strong>100+ instructors and 80+ mentors</strong> across up to 3 concurrent cohorts. Briefed, quality-checked, and approved content before it reached students, mirroring end-to-end creative supervision at scale.</li>
+            <li>Designed curriculum content across performance marketing channels like Meta Ads, Google Ads, TikTok Ads, and organic channels for hundreds of students per cohort, contributing to a <strong>5% improvement in graduate placement rate</strong>.</li>
+            <li>Managed partner relationships and campaign execution with brands including BRI Danareksa Sekuritas, Woodka, and Mamabear, achieving an <strong>83% partner renewal rate</strong> through strong brief quality and consistent execution and approval standards.</li>
+            <li>Produced cohort-level performance analysis to identify skill gaps and drive curriculum improvements, applying continuous optimization thinking mirroring digital marketing campaign management workflows.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-company">Ox Street</div>
+          <div class="tl-role">Performance Marketing Apprentice</div>
+          <div class="tl-meta"><span>📍 Singapore</span><span class="dot"></span><span>Dec 2020 – Mar 2021</span></div>
+          <ul class="tl-bullets">
+            <li>Managed end-to-end Facebook Ads campaigns covering planning, execution, evaluation, and optimization across growing weekly ad budgets.</li>
+            <li>Led A/B testing on ad creative and copy, identifying the winning variant and <strong>reducing CPA by ~50%</strong>.</li>
+            <li>Implemented ad copy personalization and creative optimization strategies, <strong>improving ROAS by 2.2x</strong> during a high-competition seasonal campaign period.</li>
+            <li>Analyzed and reported weekly performance trends to stakeholders, translating data into actionable creative and budget decisions.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-company">Lazada Indonesia</div>
+          <div class="tl-role">Affiliate Marketing Intern</div>
+          <div class="tl-meta"><span>📍 Jakarta, Indonesia</span><span class="dot"></span><span>Feb 2020 – May 2020</span></div>
+          <ul class="tl-bullets">
+            <li>Recruited and onboarded KOLs and influencers/creators for Lazada's Affiliate Program, expanding and managing the creator/community network.</li>
+            <li>Coordinated 2 major marketing campaigns (Lazada Birthday, Ramadan Sale), managing partner communications through persuasive and informative email marketing to drive engagement.</li>
+            <li>Conducted daily performance analysis on affiliate/marketing activities, translating data into actionable recommendations.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <span class="slide-badge" style="display:none">05 / 08</span>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SLIDE 6 — ORGANIZATIONAL EXPERIENCE
+══════════════════════════════════════════ -->
+<section class="slide slide-free slide-org" id="slide-org">
+  <div class="slide-inner">
+    <p class="section-label label-green">Volunteer Work</p>
+    <h2 class="section-title">Organizational Experience</h2>
+    <div class="divider divider-yellow"></div>
+    <div class="org-card">
+      <div class="org-company">Youth of HKBP Depok 1</div>
+      <div class="org-role">Coordinator of Digital &amp; Creative Division</div>
+      <div class="org-meta"><span>📍 Depok, Indonesia</span><span style="margin:0 0.25rem">·</span><span>May 2024 – May 2026</span></div>
+      <ul class="tl-bullets">
+        <li>Owned end-to-end Instagram content strategy: planning, designing, and publishing visual content and graphics to engage the youth community and promote programs/events.</li>
+        <li>Sustained consistent content output and community engagement over 2 years, applying content-calendar and audience-strategy thinking to keep visuals aligned with what the audience responds to.</li>
+      </ul>
+    </div>
+  </div>
+  <span class="slide-badge" style="display:none">06 / 08</span>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SLIDE 7 — PROJECTS
+══════════════════════════════════════════ -->
+<section class="slide slide-free slide-projects" id="slide-projects">
+  <div class="slide-inner">
+    <p class="section-label label-green">Selected Work</p>
+    <h2 class="section-title">Projects</h2>
+    <div class="divider divider-yellow"></div>
+
+    <!-- ── OX STREET CASE STUDY ── -->
+    <div class="cs-wrap">
+
+      <!-- LEFT: text -->
+      <div class="cs-left">
+        <div class="cs-title-row">
+          <h3 class="cs-title">Ox Street — Meta Ads</h3>
+          <span class="cs-period">Dec 2020 – Mar 2021</span>
+        </div>
+
+        <p class="cs-brand">Ox Street is a Singapore-based recommerce platform for authenticated sneakers and streetwear, operating across Southeast Asia countries.</p>
+
+        <div class="cs-block">
+          <span class="cs-block-label">Objective</span>
+          <p>Drive website sign-ups and sales through Meta Ads.</p>
+        </div>
+
+        <div class="cs-block">
+          <span class="cs-block-label">Strategy</span>
+          <ul class="cs-bullets">
+            <li>Structured the funnel into two distinct campaign types: Cold campaigns to acquire new sign-ups, and Hot campaigns to convert warm audiences into buyers.</li>
+            <li>Introduced decorative frames to Product Catalogue Ads (replacing the default plain white backgrounds) paired with dynamic captions tailored to each product, making the creative more eye-catching and lifting click-through rates.</li>
+            <li>Ran A/B tests on ad copy language across markets to identify which messaging resonated best in each country.</li>
+          </ul>
+        </div>
+
+        <div class="cs-block">
+          <span class="cs-block-label">Tools Used</span>
+          <p>Meta Ads Manager · Google Sheets (data tracking) · Google Slides (reporting)</p>
+        </div>
+      </div>
+
+      <!-- RIGHT: images then results -->
+      <div class="cs-right">
+        <!-- Two ad screenshots, natural proportions, side by side -->
+        <div class="cs-img-row">
+          <img src="content oxstreet/oxstreet left.jpg.png"  alt="Ox Street ad creative – left" />
+          <img src="content oxstreet/oxstreet right.jpg.png" alt="Ox Street ad creative – right" />
+        </div>
+        <!-- Wide banner below -->
+        <img src="content oxstreet/oxstreet middle.jpg" alt="Ox Street banner ad" class="cs-strip" />
+        <!-- Results sit in the free space below images -->
+        <p class="cs-results-label">Result</p>
+        <div class="cs-results">
+          <div class="cs-result-card cs-result-down">
+            <div class="cs-result-text">
+              <span class="cs-result-metric">Cost per Sale</span>
+              <span class="cs-result-desc">decreased by</span>
+              <span class="cs-result-number">50%</span>
+            </div>
+            <div class="cs-result-arrow cs-arrow-down">↓</div>
+          </div>
+          <div class="cs-result-card cs-result-up">
+            <div class="cs-result-text">
+              <span class="cs-result-metric">ROAS</span>
+              <span class="cs-result-desc">increased by</span>
+              <span class="cs-result-number">220%</span>
+            </div>
+            <div class="cs-result-arrow cs-arrow-up">↑</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /cs-wrap -->
+
+    <!-- ── OTHER PROJECTS (coming soon) ── -->
+    <div class="projects-grid projects-coming">
+      <div class="project-card">
+        <div class="project-emoji">📊</div>
+        <h3>Live Campaign – BRI Danareksa Sekuritas</h3>
+        <p>Co-designed and managed a live virtual internship campaign for a leading securities firm, achieving strong partner retention through brief quality and consistent execution.</p>
+        <span class="project-coming">Details Coming Soon</span>
+      </div>
+      <div class="project-card">
+        <div class="project-emoji">🛒</div>
+        <h3>Affiliate Campaign – Lazada Birthday &amp; Ramadan Sale</h3>
+        <p>Coordinated influencer onboarding and campaign execution for two of Lazada Indonesia's highest-traffic sale events.</p>
+        <span class="project-coming">Details Coming Soon</span>
+      </div>
+      <!-- HKBP full case study — standalone, not inside a project-card -->
+      <div class="hkbp-wrap">
+
+          <!-- header -->
+          <div class="hkbp-header">
+            <div class="cs-title-row">
+              <h3 class="cs-title">Instagram Content Strategy — @nhkbpd1</h3>
+              <span class="cs-period">May 2024 – May 2026</span>
+            </div>
+          </div>
+
+          <p class="hkbp-brand">Naposobulung HKBP Depok 1 is a youth community within HKBP Depok 1 Church. As the person responsible for the account, I ensure community activities and announcements are communicated clearly, drive engagement with followers, and produce content designed to help the audience grow in faith.</p>
+
+          <!-- scope + approach -->
+          <div class="hkbp-scope-row">
+            <div class="hkbp-box">
+              <p class="hkbp-box-title">Scope of Work</p>
+              <ul class="hkbp-list">
+                <li>Content ideation &amp; planning</li>
+                <li>Graphic design (Canva)</li>
+                <li>Short Video Editing (Capcut)</li>
+                <li>Content scheduling &amp; publishing</li>
+                <li>Audience &amp; trend research</li>
+              </ul>
+            </div>
+            <div class="hkbp-box">
+              <p class="hkbp-box-title">Approach</p>
+              <ul class="hkbp-list">
+                <li>Maintained consistent publishing cadence across 2 years</li>
+                <li>Aligned visual style with youth audience interests and church program calendar</li>
+                <li>Used informal competitor research to keep content relevant</li>
+              </ul>
+            </div>
+          </div>
+
+          <p class="hkbp-tools"><strong>Tools &amp; Skills:</strong> Canva · Content Calendar · Copywriting (BI/EN) · Capcut · Meta Business Suite</p>
+
+          <!-- content showcase -->
+          <div class="hkbp-content-row">
+
+            <!-- LEFT: numbered image groups -->
+            <div class="hkbp-items">
+
+              <!-- 1: single image -->
+              <div class="hkbp-item">
+                <div style="display:flex;align-items:center;gap:0.5rem;">
+                  <span class="hkbp-item-num">1</span>
+                </div>
+                <div class="hkbp-item-imgs single">
+                  <img src="content nhkbpd1/content 1.png" alt="Engagement Reel – Guess the Bible Character" />
+                </div>
+              </div>
+
+              <!-- 2: two images -->
+              <div class="hkbp-item">
+                <div style="display:flex;align-items:center;gap:0.5rem;">
+                  <span class="hkbp-item-num">2</span>
+                </div>
+                <div class="hkbp-item-imgs">
+                  <img src="content nhkbpd1/content 2.1.png" alt="Faith Content Carousel slide 1" />
+                  <img src="content nhkbpd1/content 2.2.png" alt="Faith Content Carousel slide 2" />
+                </div>
+              </div>
+
+              <!-- 3: single image -->
+              <div class="hkbp-item">
+                <div style="display:flex;align-items:center;gap:0.5rem;">
+                  <span class="hkbp-item-num">3</span>
+                </div>
+                <div class="hkbp-item-imgs single">
+                  <img src="content nhkbpd1/content 3.png" alt="Event Promotion – Ibadah Gabungan" />
+                </div>
+              </div>
+
+              <!-- 4: four images -->
+              <div class="hkbp-item">
+                <div style="display:flex;align-items:center;gap:0.5rem;">
+                  <span class="hkbp-item-num">4</span>
+                </div>
+                <div class="hkbp-item-imgs">
+                  <img src="content nhkbpd1/content 4.1.png" alt="Faith Carousel 2 – slide 1" />
+                  <img src="content nhkbpd1/content 4.2.png" alt="Faith Carousel 2 – slide 2" />
+                  <img src="content nhkbpd1/content 4.3.png" alt="Faith Carousel 2 – slide 3" />
+                  <img src="content nhkbpd1/content 4.4.png" alt="Faith Carousel 2 – slide 4" />
+                </div>
+              </div>
+
+            </div><!-- /hkbp-items -->
+
+            <!-- RIGHT: stats per content -->
+            <div class="hkbp-stats">
+
+              <div class="hkbp-stat-card">
+                <p class="hkbp-stat-title">1. Engagement Reel</p>
+                <p class="hkbp-stat-goal">Goal: Drive engagement with fun content in Christianity niche</p>
+                <div class="hkbp-stat-nums">
+                  <span class="hkbp-stat-num">2,189 views</span>
+                  <span class="hkbp-stat-sep"></span>
+                  <span class="hkbp-stat-num">ER 3.93%</span>
+                </div>
+              </div>
+
+              <div class="hkbp-stat-card">
+                <p class="hkbp-stat-title">2. Faith Content Carousel</p>
+                <p class="hkbp-stat-goal">Goal: Help the audience grow in faith</p>
+                <div class="hkbp-stat-nums">
+                  <span class="hkbp-stat-num">1,056 views</span>
+                  <span class="hkbp-stat-sep"></span>
+                  <span class="hkbp-stat-num">ER 4.83%</span>
+                </div>
+              </div>
+
+              <div class="hkbp-stat-card">
+                <p class="hkbp-stat-title">3. Event Promotion</p>
+                <p class="hkbp-stat-goal">Goal: Promote community worship event</p>
+                <div class="hkbp-stat-nums">
+                  <span class="hkbp-stat-num">2,769 views</span>
+                  <span class="hkbp-stat-sep"></span>
+                  <span class="hkbp-stat-num">ER 1.88%</span>
+                </div>
+              </div>
+
+              <div class="hkbp-stat-card">
+                <p class="hkbp-stat-title">4. Faith Content Carousel</p>
+                <p class="hkbp-stat-goal">Goal: Help the audience grow in faith</p>
+                <div class="hkbp-stat-nums">
+                  <span class="hkbp-stat-num">1,196 views</span>
+                  <span class="hkbp-stat-sep"></span>
+                  <span class="hkbp-stat-num">ER 3.60%</span>
+                </div>
+              </div>
+
+            </div><!-- /hkbp-stats -->
+
+          </div><!-- /hkbp-content-row -->
+
+        </div><!-- /hkbp-wrap -->
+    </div>
+
+  </div>
+  <span class="slide-badge" style="display:none">07 / 08</span>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SLIDE 8 — CALL TO ACTION
+     Black bg · White text · Yellow CTA button
+     = maximum contrast (WCAG AA+)
+══════════════════════════════════════════ -->
+<section class="slide slide-cta" id="slide-cta">
+  <div class="slide-inner">
+    <div class="cta-accent-bar"></div>
+    <p class="cta-label">Let's Work Together</p>
+    <h2 class="cta-title">Ready to Drive Results?</h2>
+    <p class="cta-desc">I'm open to full-time digital marketing roles where I can turn strategic depth into measurable campaign performance. Let's connect.</p>
+    <div class="cta-buttons">
+      <a href="mailto:verosinambelaa@gmail.com" class="btn-cta-primary">✉️ Send Me an Email</a>
+      <a href="tel:081289906303" class="btn-cta-outline">📞 081289906303</a>
+      <a href="https://www.linkedin.com/in/vevelina/" target="_blank" rel="noopener" class="btn-cta-outline">🔗 LinkedIn</a>
+    </div>
+  </div>
+  <div class="cta-footer">© 2026 Veronika Evelina · Digital Marketing Professional · Jakarta, Indonesia</div>
+  <span class="slide-badge" style="color:rgba(255,255,255,0.12);">08 / 08</span>
+</section>
+
+<!-- ══ ACTIVE DOT TRACKING ══ -->
+<script>
+  const dots   = document.querySelectorAll('.side-dot');
+  const slides = document.querySelectorAll('.slide');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        dots.forEach(d => {
+          d.classList.toggle('active', d.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { threshold: 0.5 });
+
+  slides.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
