@@ -12,7 +12,7 @@ Digital marketing professional with 5+ years coordinating performance marketing 
 
 _Sr. Program Executive, Fullstack Digital Marketing_ 
 
-_Jakarta, Indonesia_ Mar 2021 – Jul 2026 
+_Jakarta, Indonesia_ Mar 2021 – Present 
 
 - Designed performance marketing curriculum across Meta, Google, TikTok Ads, and organic channels for hundreds of students per cohort, contributing to a 5% improvement in graduate placement rate 
 
@@ -32,7 +32,7 @@ _Singapore_ Dec 2020 – Mar 2021
 
 - Led A/B testing on ad creative copy, identifying the winning variant and reducing CPA by ~50% 
 
-- Implemented ad copy personalization and creative optimization strategies, improving ROAS by 2.2x during a high-competition seasonal campaign period 
+- Implemented ad copy personalization and creative optimization strategies, improving ROAS by 61% (1.8x → 2.9x) during a high-competition seasonal campaign period 
 
 - Analyzed and reported weekly performance trends to stakeholders, translating data into actionable creative and budget decisions 
 
@@ -66,7 +66,7 @@ _Depok, Indonesia_ May 2024 – May 2026
 
 ## **ADDITIONAL INFORMATION** 
 
-**Technical & Soft Skills:** Meta Ads Manager, Google Ads Manager, , Meta Business Suite, Canva, CapCut, Claude Code, Google Analytics (GA4), Google Tag Management, Mailchimp 
+**Technical & Soft Skills:** Meta Ads Manager, Google Ads Manager, TikTok Ads, Meta Business Suite, Canva, CapCut, Claude Code, Google Analytics (GA4), Google Tag Manager, Mailchimp 
 
 **Certification:** Full-stack Digital Marketing, Issued by RevoU 
 
