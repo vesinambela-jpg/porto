@@ -788,6 +788,39 @@
       grid-template-columns: repeat(3, 1fr);
     }
 
+    /* Dolanan: mixed image + video creatives with format captions */
+    .cs-media-row { align-items: start; }
+    .cs-media-row figure { margin: 0; }
+    .cs-media-row img,
+    .cs-media-row video {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 10px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+      border: 1px solid var(--border);
+    }
+    .cs-media-row figcaption {
+      margin-top: 0.45rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--deep);
+      text-align: center;
+    }
+    .cs-media-badge {
+      display: inline-block;
+      margin-left: 0.25rem;
+      padding: 0.05rem 0.4rem;
+      border-radius: 999px;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      color: var(--green);
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
     /* Result label */
     .cs-results-label {
       font-size: 0.72rem;
@@ -1531,6 +1564,106 @@
                 <svg viewBox="0 0 16 16" width="14" height="14" fill="none"><rect x="1" y="2" width="14" height="10" rx="1.5" fill="white"/><rect x="3" y="4.5" width="6" height="1.4" rx="0.7" fill="#E8710A"/><rect x="3" y="7" width="9" height="1.4" rx="0.7" fill="#E8710A"/></svg>
               </span>
               <span class="tool-logo-name">Google Slides <span class="tool-logo-note">(reporting)</span></span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /cs-wrap -->
+
+    <!-- ── DOLANAN CASE STUDY ── -->
+    <div class="cs-wrap">
+
+      <!-- LEFT: text -->
+      <div class="cs-left">
+        <div class="cs-title-row">
+          <h3 class="cs-title">Dolanan — Meta Ads</h3>
+        </div>
+
+        <p class="cs-brand">Dolanan is a children's toy rental service in Jakarta, giving parents more toy variety for their kids without buying toys they outgrow in weeks.</p>
+
+        <div class="cs-block">
+          <span class="cs-block-label">Objective</span>
+          <p>Drive website leads through Meta Ads with limited time and budget before launch.</p>
+        </div>
+
+        <div class="cs-block">
+          <span class="cs-block-label">Strategy</span>
+          <ul class="cs-bullets">
+            <li>Structured the launch into two campaign types: cold Prospecting campaigns targeting parenting and Montessori interests, and Lookalike campaigns seeded from website and Instagram visitors.</li>
+            <li>Tested single image, carousel, and short video creatives across 9 ad sets to find the format that drives the cheapest sign-ups.</li>
+            <li>Rebuilt every metric from raw ad set data, caught a spend misallocation in the report, and stopped a budget shift toward the campaign that was actually 42% more expensive per sign-up.</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- RIGHT: creatives, results, then tools used -->
+      <div class="cs-right">
+        <!-- Three tested formats: single image (winner), carousel, short video -->
+        <div class="cs-img-row cs-img-row-3 cs-media-row">
+          <figure>
+            <img src="Content Dolanan/dolanan-single-image.png" alt="Dolanan single image ad on Facebook" />
+            <figcaption>Single Image <span class="cs-media-badge">Winner</span></figcaption>
+          </figure>
+          <figure>
+            <video src="Content Dolanan/dolanan-carousel.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Dolanan carousel ad on Facebook"></video>
+            <figcaption>Carousel</figcaption>
+          </figure>
+          <figure>
+            <video src="Content Dolanan/dolanan-video.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Dolanan short video ad on Instagram"></video>
+            <figcaption>Short Video</figcaption>
+          </figure>
+        </div>
+        <p class="cs-results-label">Result</p>
+        <div class="cs-results">
+          <div class="cs-result-card cs-result-up">
+            <div class="cs-result-text">
+              <span class="cs-result-metric">Website Sign-ups</span>
+              <span class="cs-result-desc">in 5 days</span>
+              <span class="cs-result-number">28</span>
+            </div>
+            <div class="cs-result-arrow cs-arrow-up">↑</div>
+          </div>
+          <div class="cs-result-card cs-result-down">
+            <div class="cs-result-text">
+              <span class="cs-result-metric">Cost per Lead</span>
+              <span class="cs-result-desc">lower (single image vs carousel)</span>
+              <span class="cs-result-number">39%</span>
+            </div>
+            <div class="cs-result-arrow cs-arrow-down">↓</div>
+          </div>
+        </div>
+
+        <div class="cs-block">
+          <span class="cs-block-label">Tools Used</span>
+          <div class="tools-logos">
+            <span class="tool-logo">
+              <span class="tool-logo-icon tool-meta" aria-hidden="true">
+                <svg viewBox="0 0 24 16" width="18" height="12" fill="none"><path d="M6 2C3 2 1 5 1 8s2 6 5 6c2 0 3.5-1.5 5-4 1.5 2.5 3 4 5 4 3 0 5-3 5-6s-2-6-5-6c-2 0-3.5 1.5-5 4C9.5 3.5 8 2 6 2z" stroke="white" stroke-width="1.8"/></svg>
+              </span>
+              <span class="tool-logo-name">Meta Ads Manager</span>
+            </span>
+            <span class="tools-sep">·</span>
+            <span class="tool-logo">
+              <span class="tool-logo-icon tool-canva" aria-hidden="true">
+                <svg viewBox="0 0 16 16" width="14" height="14" fill="white"><path d="M8 1a5.2 5.2 0 00-5.2 5.2c0 2.8 2 4.6 3.6 5.7.5.35.9.1.9-.5v-1.6c0-.5.4-.9.9-.9h1.6c2.9 0 5.2-2.3 5.2-5.2A5.2 5.2 0 008 1z"/></svg>
+              </span>
+              <span class="tool-logo-name">Canva <span class="tool-logo-note">(creative creation)</span></span>
+            </span>
+            <span class="tools-sep">·</span>
+            <span class="tool-logo">
+              <span class="tool-logo-icon tool-sheets" aria-hidden="true">
+                <svg viewBox="0 0 16 16" width="14" height="14" fill="white"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>
+              </span>
+              <span class="tool-logo-name">Google Sheets <span class="tool-logo-note">(data processing and analysis)</span></span>
+            </span>
+            <span class="tools-sep">·</span>
+            <span class="tool-logo">
+              <span class="tool-logo-icon tool-slides" aria-hidden="true">
+                <svg viewBox="0 0 16 16" width="14" height="14" fill="none"><rect x="1" y="2" width="14" height="10" rx="1.5" fill="white"/><rect x="3" y="4.5" width="6" height="1.4" rx="0.7" fill="#E8710A"/><rect x="3" y="7" width="9" height="1.4" rx="0.7" fill="#E8710A"/></svg>
+              </span>
+              <span class="tool-logo-name">Google Slides <span class="tool-logo-note">(reporting and presentation)</span></span>
             </span>
           </div>
         </div>
